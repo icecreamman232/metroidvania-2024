@@ -4,27 +4,24 @@ namespace SGGames.Scripts.Player
 {
     public class PlayerJump : PlayerBehavior
     {
-        [SerializeField] private float m_jumpHeight;
-        [SerializeField] private float m_timeToJumpPeak;
-        [SerializeField] private float m_jumpVelocity;
-        [SerializeField] private float m_jumpAcceleration;
+        [Header("New")]
+        [SerializeField] private float m_jumpPeak;
+        [SerializeField] private float m_jumpForce;
+        [SerializeField] private float m_variableJumpHeightMultiplier;
         [SerializeField] private float m_coyoteTime;
-
-        //private PlayerSoundBank m_soundBank;
+        [SerializeField] private bool m_isJumping;
+        
+        private float m_jumpStartTime;
         private Animator m_animator;
-
         private int m_jumpAnimParam = Animator.StringToHash("Jumping");
-        private bool m_isJumping;
-        //private float m_lastJumpY;
         private float m_coyoteTimer;
+        private float m_lastGroundY;
         
         protected override void Start()
         {
             base.Start();
             m_isAllow = true;
             m_animator = GetComponentInChildren<Animator>();
-            //m_soundBank = GetComponent<PlayerSoundBank>();
-            ComputeJumpParams();
         }
 
         private void Update()
@@ -33,8 +30,40 @@ namespace SGGames.Scripts.Player
             {
                 return;
             }
+            
+            if (Input.GetKeyDown(KeyCode.Space) && m_controller.CollisionInfos.CollideBelow
+                && m_coyoteTimer <= m_coyoteTime && !m_isJumping)
+            {
+                m_controller.SetVerticalVelocity(0);
+                m_isJumping = true;
+                m_jumpStartTime = Time.time;
+                m_coyoteTimer = 0;
+                m_lastGroundY = transform.position.y;
+            }
 
-            if (!m_Controller.CollisionInfos.CollideBelow)
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                m_isJumping = false;
+            }
+
+            if (m_isJumping)
+            {
+                float jumpTime = Time.time - m_jumpStartTime;
+                float jumpVelocity = m_jumpForce + (jumpTime * m_variableJumpHeightMultiplier);
+
+                if (jumpVelocity >= m_jumpPeak)
+                {
+                    Debug.Log($"CURRENT Y {transform.position.y} VEC {jumpVelocity}");
+                    jumpVelocity = 0;
+                    m_isJumping = false; // Stop jumping if max height reached
+                }
+
+                m_controller.SetVerticalVelocity(jumpVelocity);
+            }
+            
+            
+            if (!m_controller.CollisionInfos.CollideBelow)
             {
                 m_coyoteTimer += Time.deltaTime;
             }
@@ -43,27 +72,12 @@ namespace SGGames.Scripts.Player
                 m_coyoteTimer = 0;
             }
             
-            if (Input.GetKeyDown(KeyCode.Space) && m_Controller.CollisionInfos.CollideBelow
-                && m_coyoteTimer <= m_coyoteTime)
-            {
-                m_Controller.SetVerticalVelocity(m_jumpVelocity);
-                //m_soundBank.PlayJumpSFX();
-                //m_isJumping = true;
-                m_coyoteTimer = 0;
-            }
-            
             UpdateAnimator();
-        }
-
-        private void ComputeJumpParams()
-        {
-            m_timeToJumpPeak = Mathf.Sqrt(2 * m_jumpHeight / Mathf.Abs(m_Controller.Gravity));
-            m_jumpVelocity = Mathf.Abs(m_Controller.Gravity) * m_timeToJumpPeak;
         }
 
         private void UpdateAnimator()
         {
-            m_animator.SetBool(m_jumpAnimParam,m_Controller.Velocity.y != 0 && m_Controller.IsGravityActive);
+            m_animator.SetBool(m_jumpAnimParam,m_controller.Velocity.y != 0 && m_controller.IsGravityActive);
         }
     }
 }

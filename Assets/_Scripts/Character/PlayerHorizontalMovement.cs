@@ -1,5 +1,4 @@
 using System.Collections;
-using SGGames.Scripts.Managers;
 using UnityEngine;
 
 namespace SGGames.Scripts.Player
@@ -43,8 +42,8 @@ namespace SGGames.Scripts.Player
 
         private void HandleHorizontalMovementOnDead()
         {
-            m_Controller.SetVelocity(Vector2.zero);
-            m_Controller.SetGravityActive(false);
+            m_controller.SetVelocity(Vector2.zero);
+            m_controller.SetGravityActive(false);
             m_isAllow = false;
         }
 
@@ -55,18 +54,18 @@ namespace SGGames.Scripts.Player
 
             if (m_rawInputValue.x == 0)
             {
-                m_Controller.SetHorizontalVelocity(0);
+                m_controller.SetHorizontalVelocity(0);
             }
             else
             {
                 //Smooth horizontal movement
                 float targetVelocityX = m_rawInputValue.x * m_moveSpeed;
-                m_Controller.SetHorizontalVelocity(Mathf.SmoothDamp(
-                    m_Controller.Velocity.x, targetVelocityX,
+                m_controller.SetHorizontalVelocity(Mathf.SmoothDamp(
+                    m_controller.Velocity.x, targetVelocityX,
                     ref m_velocityXSmoothing, 0.1f));
 
                 //Flip character sprite if go to the left
-                Flip(m_Controller.Velocity.x < 0);
+                Flip(m_controller.Velocity.x < 0);
             }
 
             UpdateAnimator();
@@ -81,7 +80,7 @@ namespace SGGames.Scripts.Player
 
         private void UpdateAnimator()
         {
-            m_animator.SetBool(m_runningAnimParam, m_Controller.Velocity.x != 0);
+            m_animator.SetBool(m_runningAnimParam, m_controller.Velocity.x != 0);
         }
 
         private IEnumerator OnStopCameraForDuration(float duration)

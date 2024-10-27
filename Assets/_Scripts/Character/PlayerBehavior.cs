@@ -8,12 +8,12 @@ namespace SGGames.Scripts.Player
     /// </summary>
     public class PlayerBehavior : MonoBehaviour
     {
-        protected Controller2D m_Controller;
+        protected Controller2D m_controller;
         protected bool m_isAllow;
         
         protected virtual void Start()
         {
-            m_Controller = GetComponent<Controller2D>();
+            m_controller = GetComponent<Controller2D>();
         }
 
         public virtual void ToggleAllow(bool value)
