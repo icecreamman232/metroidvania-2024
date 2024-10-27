@@ -19,7 +19,8 @@ namespace SGGames.Scripts.Player
         private bool m_isDelay;
         private PlayerHorizontalMovement m_horizontalMovement;
         private Animator m_animator;
-        private int m_shootAnim = Animator.StringToHash("Shoot");
+        private int m_shootHorizontalAnim = Animator.StringToHash("ShootHorizontal");
+        private int m_shootVerticalAnim = Animator.StringToHash("ShootVertical");
 
         protected override void Start()
         {
@@ -75,8 +76,16 @@ namespace SGGames.Scripts.Player
             var bulletGO = m_bulletPooler.GetPooledGameObject();
             var bullet = bulletGO.GetComponent<PlayerBullet>();
             bullet.Spawn(m_shootPivot.transform.position, m_aimDirection);
+
+            if (m_aimDirection.y > 0)
+            {
+                m_animator.SetTrigger(m_shootVerticalAnim);
+            }
+            else if(m_aimDirection.x != 0)
+            {
+                m_animator.SetTrigger(m_shootHorizontalAnim);
+            }
             
-            m_animator.SetTrigger(m_shootAnim);
             
             StartCoroutine(OnDelayBetween2Shot());
         }
