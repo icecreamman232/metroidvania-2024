@@ -57,8 +57,8 @@ namespace SGGames.Scripts.Player
                 if (jumpVelocity >= m_jumpPeak)
                 {
                     Debug.Log($"CURRENT Y {transform.position.y} VEC {jumpVelocity}");
-                    jumpVelocity = 0;
                     m_isJumping = false; // Stop jumping if max height reached
+                    return;
                 }
 
                 m_controller.SetVerticalVelocity(jumpVelocity);
