@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using SGGames.Scripts.Player;
 using UnityEngine;
 
-public class Ladder : MonoBehaviour
+namespace SGGames.Scripts.World
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Ladder : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        public Transform LeftSnapPoint;
+        public Transform RightSnapPoint;
         
     }
 }
+

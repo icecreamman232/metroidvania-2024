@@ -17,6 +17,8 @@ namespace SGGames.Scripts.Player
         private float m_coyoteTimer;
         private float m_lastGroundY;
         
+        public bool IsJumping => m_isJumping;
+        
         protected override void Start()
         {
             base.Start();

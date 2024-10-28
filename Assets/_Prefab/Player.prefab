@@ -235,6 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1aaed594d5a65642aa97b50ec11b318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_curLadder: {fileID: 0}
+  m_climbSpeed: 2
+  m_isClimbing: 0
 --- !u!1 &4560615599737840853
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,8 +340,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2047993465
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1304128383, guid: 3310e1180d8eb8c40a6ab914f752f2ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
