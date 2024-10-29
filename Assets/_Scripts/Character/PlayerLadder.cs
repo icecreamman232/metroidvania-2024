@@ -8,10 +8,19 @@ namespace SGGames.Scripts.Player
         [SerializeField] private Ladder m_curLadder;
         [SerializeField] private float m_climbSpeed = 5f;
         [SerializeField] private bool m_isClimbing;
-
-        private bool m_startedClimbing;
-        private bool m_isClimbUp;
+        [SerializeField] private bool m_startedClimbing;
+        [SerializeField] private bool m_isClimbUp;
+        [SerializeField] private PlayerLadderState m_playerLadderState;
+        
         private PlayerJump m_playerJump;
+
+        private enum PlayerLadderState
+        {
+            NONE,
+            ENTER_FROM_TOP,
+            ENTER_FROM_BOTTOM,
+            ENTER_FROM_AIR,
+        }
         
         protected override void Start()
         {
@@ -20,16 +29,32 @@ namespace SGGames.Scripts.Player
             m_playerJump = GetComponent<PlayerJump>();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
+            if (m_curLadder != null) return;
+            
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder") && !m_startedClimbing)
             {
                 m_curLadder = other.GetComponent<Ladder>();
-                
-                //Player runs into ladder from the bottom
-                if (m_controller.CollisionInfos.CollideLeft || m_controller.CollisionInfos.ColliderRight)
+
+                //Jump into ladder
+                if ((m_controller.CollisionInfos.CollideLeft || m_controller.CollisionInfos.ColliderRight) && !m_controller.CollisionInfos.CollideBelow)
                 {
+                    m_playerLadderState = PlayerLadderState.ENTER_FROM_AIR;
+                    m_controller.SetVerticalVelocity(0);
+                    m_controller.SetGravityActive(false);
                     m_controller.RemoveLayerFromObstacles(1 << LayerMask.NameToLayer("Ladder"));
+                }
+                //Player runs into ladder from the bottom
+                else if ((m_controller.CollisionInfos.CollideLeft || m_controller.CollisionInfos.ColliderRight) && m_controller.CollisionInfos.CollideBelow)
+                {
+                    m_playerLadderState = PlayerLadderState.ENTER_FROM_BOTTOM;
+                    m_controller.RemoveLayerFromObstacles(1 << LayerMask.NameToLayer("Ladder"));
+                }
+                //Player is on the top of ladder
+                else if (m_controller.CollisionInfos.CollideBelow)
+                {
+                    m_playerLadderState = PlayerLadderState.ENTER_FROM_TOP;
                 }
             }
         }
@@ -41,6 +66,7 @@ namespace SGGames.Scripts.Player
             
             m_startedClimbing = false;
             m_isClimbing = false;
+            m_playerLadderState = PlayerLadderState.NONE;
             m_controller.SetVerticalVelocity(0);
             m_controller.SetGravityActive(true);
         }
@@ -49,9 +75,46 @@ namespace SGGames.Scripts.Player
         {
             if (!m_isAllow) return;
 
-            if (m_curLadder == null) return;
+            if (m_curLadder == null) { return; }
 
+            if (!m_startedClimbing)
+            {
+                BeforeClimbing();
+            }
+            else
+            {
+                Climbing();
+            }
+        }
+
+        //Check if player is about to climbing or not.
+        //If not we preserve current state of player to perform other actions
+        private void BeforeClimbing()
+        {
             if (Input.GetKey(KeyCode.UpArrow))
+            {
+                if (m_playerLadderState == PlayerLadderState.ENTER_FROM_BOTTOM
+                    || m_playerLadderState == PlayerLadderState.ENTER_FROM_AIR
+                    || (m_playerLadderState == PlayerLadderState.ENTER_FROM_TOP && !m_controller.CollisionInfos.CollideBelow))
+                {
+                    m_startedClimbing = true;
+                }
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                if ((m_playerLadderState == PlayerLadderState.ENTER_FROM_BOTTOM && m_controller.CollisionInfos.CollideBelow) 
+                    || m_playerLadderState == PlayerLadderState.ENTER_FROM_TOP
+                    || m_playerLadderState == PlayerLadderState.ENTER_FROM_AIR
+                    || (m_playerLadderState == PlayerLadderState.NONE && m_controller.CollisionInfos.CollideBelow))
+                {
+                    m_startedClimbing = true;
+                }
+            }
+        }
+
+        private void Climbing()
+        {
+            if(Input.GetKey(KeyCode.UpArrow))
             {
                 m_isClimbUp = true;
                 m_isClimbing = true;
@@ -65,11 +128,11 @@ namespace SGGames.Scripts.Player
             {
                 m_isClimbing = false;
             }
-
+            
             if (m_isClimbing)
             {
+                //While climbing we remove ladder from obstacle mask
                 m_controller.RemoveLayerFromObstacles(1 << LayerMask.NameToLayer("Ladder"));
-                m_startedClimbing = true;
                 m_controller.SetGravityActive(false);
                 m_controller.SetVerticalVelocity(m_climbSpeed * (m_isClimbUp ? 1 : -1));
             }
@@ -77,11 +140,6 @@ namespace SGGames.Scripts.Player
             {
                 m_controller.SetVerticalVelocity(0);
             }
-        }
-
-        private float GetHeadYPosition()
-        {
-            return transform.position.y + 0.7f;
         }
     }
 }
