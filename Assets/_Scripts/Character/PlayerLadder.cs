@@ -1,4 +1,3 @@
-using System;
 using SGGames.Scripts.World;
 using UnityEngine;
 
@@ -23,48 +22,27 @@ namespace SGGames.Scripts.Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Ladder"))
-            {
-                m_curLadder = other.GetComponent<Ladder>();
-                if (!m_controller.CollisionInfos.CollideBelow)
-                {
-                    m_controller.SetGravityActive(false);
-                    m_controller.SetVelocity(Vector2.zero);
-                }
-            }
-        }
-
-        private void OnTriggerStay2D(Collider2D other)
-        {
             if (other.gameObject.layer == LayerMask.NameToLayer("Ladder") && !m_startedClimbing)
             {
-                if (!m_controller.CollisionInfos.CollideBelow)
+                m_curLadder = other.GetComponent<Ladder>();
+                
+                //Player runs into ladder from the bottom
+                if (m_controller.CollisionInfos.CollideLeft || m_controller.CollisionInfos.ColliderRight)
                 {
-                    m_controller.SetGravityActive(false);
-                    //m_controller.SetVelocity(Vector2.zero);
+                    m_controller.RemoveLayerFromObstacles(1 << LayerMask.NameToLayer("Ladder"));
                 }
             }
         }
-
+        
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")
-                && m_curLadder.gameObject == other.gameObject)
-            {
-                m_startedClimbing = false;
-                m_isClimbing = false;
-                if (GetHeadYPosition() > m_curLadder.RightSnapPoint.position.y)
-                {
-                    transform.position = m_controller.Velocity.x < 0 
-                        ? m_curLadder.LeftSnapPoint.position 
-                        : m_curLadder.RightSnapPoint.position;
-                }
-                
-                m_controller.SetVerticalVelocity(0);
-                m_controller.SetGravityActive(true);
-                m_curLadder = null;
-                
-            }
+            m_curLadder = null;
+            m_controller.AddLayerToObstacles(1 << LayerMask.NameToLayer("Ladder"));
+            
+            m_startedClimbing = false;
+            m_isClimbing = false;
+            m_controller.SetVerticalVelocity(0);
+            m_controller.SetGravityActive(true);
         }
 
         private void Update()
@@ -90,6 +68,7 @@ namespace SGGames.Scripts.Player
 
             if (m_isClimbing)
             {
+                m_controller.RemoveLayerFromObstacles(1 << LayerMask.NameToLayer("Ladder"));
                 m_startedClimbing = true;
                 m_controller.SetGravityActive(false);
                 m_controller.SetVerticalVelocity(m_climbSpeed * (m_isClimbUp ? 1 : -1));
