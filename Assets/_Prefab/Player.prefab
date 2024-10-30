@@ -133,7 +133,7 @@ MonoBehaviour:
   m_verticalRayCount: 4
   m_obstacleMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
   m_collisionInfo:
     CollideLeft: 0
     ColliderRight: 0
@@ -238,6 +238,9 @@ MonoBehaviour:
   m_curLadder: {fileID: 0}
   m_climbSpeed: 2
   m_isClimbing: 0
+  m_startedClimbing: 0
+  m_isClimbUp: 0
+  m_playerLadderState: 0
 --- !u!1 &4560615599737840853
 GameObject:
   m_ObjectHideFlags: 0
