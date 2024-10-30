@@ -11,8 +11,16 @@ namespace SGGames.Scripts.Player
         [SerializeField] private bool m_startedClimbing;
         [SerializeField] private bool m_isClimbUp;
         [SerializeField] private PlayerLadderState m_playerLadderState;
-        
+
+        private PlayerGunHandler m_playerGunHandler;
         private PlayerJump m_playerJump;
+        private Animator m_animator;
+        
+        private int m_startClimbingAnimParam = Animator.StringToHash("StartClimbing");
+        private int m_climbingAnimParam = Animator.StringToHash("Climbing");
+        
+        public bool HasStartedClimbing => m_startedClimbing;
+        public bool IsClimbing => m_isClimbing;
 
         private enum PlayerLadderState
         {
@@ -27,6 +35,8 @@ namespace SGGames.Scripts.Player
             base.Start();
             m_isAllow = true;
             m_playerJump = GetComponent<PlayerJump>();
+            m_playerGunHandler = GetComponent<PlayerGunHandler>();
+            m_animator = GetComponentInChildren<Animator>();
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -67,8 +77,10 @@ namespace SGGames.Scripts.Player
             m_startedClimbing = false;
             m_isClimbing = false;
             m_playerLadderState = PlayerLadderState.NONE;
+            m_playerGunHandler.ToggleShootVertically(true);
             m_controller.SetVerticalVelocity(0);
             m_controller.SetGravityActive(true);
+            UpdateAnimator();
         }
 
         private void Update()
@@ -85,6 +97,8 @@ namespace SGGames.Scripts.Player
             {
                 Climbing();
             }
+
+            UpdateAnimator();
         }
 
         //Check if player is about to climbing or not.
@@ -98,6 +112,7 @@ namespace SGGames.Scripts.Player
                     || (m_playerLadderState == PlayerLadderState.ENTER_FROM_TOP && !m_controller.CollisionInfos.CollideBelow))
                 {
                     m_startedClimbing = true;
+                    m_playerGunHandler.ToggleShootVertically(false);
                 }
             }
             else if (Input.GetKey(KeyCode.DownArrow))
@@ -108,6 +123,7 @@ namespace SGGames.Scripts.Player
                     || (m_playerLadderState == PlayerLadderState.NONE && m_controller.CollisionInfos.CollideBelow))
                 {
                     m_startedClimbing = true;
+                    m_playerGunHandler.ToggleShootVertically(false);
                 }
             }
         }
@@ -140,6 +156,12 @@ namespace SGGames.Scripts.Player
             {
                 m_controller.SetVerticalVelocity(0);
             }
+        }
+
+        private void UpdateAnimator()
+        {
+            m_animator.SetBool(m_startClimbingAnimParam, m_startedClimbing);
+            m_animator.SetBool(m_climbingAnimParam, m_isClimbing);
         }
     }
 }

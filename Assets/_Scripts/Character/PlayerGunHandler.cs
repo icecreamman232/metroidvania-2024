@@ -15,6 +15,10 @@ namespace SGGames.Scripts.Player
         [SerializeField] private Vector2 m_rightShootOffset;
         [SerializeField] private Vector2 m_upShootOffset;
         [SerializeField] private Vector2 m_downShootOffset;
+
+
+        private bool m_canShootVertical;
+        private bool m_canShootAtRest;
         
         private bool m_isDelay;
         private PlayerHorizontalMovement m_horizontalMovement;
@@ -22,10 +26,16 @@ namespace SGGames.Scripts.Player
         private int m_shootHorizontalAnim = Animator.StringToHash("ShootHorizontal");
         private int m_shootVerticalAnim = Animator.StringToHash("ShootVertical");
 
+        public void ToggleShootVertically(bool toggle)
+        {
+            m_canShootVertical = toggle;
+        }
+        
         protected override void Start()
         {
             base.Start();
             m_isAllow = true;
+            m_canShootVertical = true;
             m_animator = GetComponentInChildren<Animator>();
             m_horizontalMovement = GetComponent<PlayerHorizontalMovement>();
         }
@@ -41,31 +51,34 @@ namespace SGGames.Scripts.Player
                 {
                     m_aimDirection = Vector2.right;
                     m_shootPivot.localPosition = m_rightShootOffset;
+                    Shoot();
                 }
                 else if (input.x < 0)
                 {
                     m_aimDirection = Vector2.left;
                     m_shootPivot.localPosition = m_leftShootOffset;
+                    Shoot();
                 }
                 
-                if (input.y > 0)
+                if (input.y > 0 && m_canShootVertical)
                 {
                     m_aimDirection = Vector2.up;
                     m_shootPivot.localPosition = m_upShootOffset;
+                    Shoot();
                 }
-                else if (input.y < 0)
+                else if (input.y < 0 && m_canShootVertical)
                 {
                     m_aimDirection = Vector2.down;
                     m_shootPivot.localPosition = m_downShootOffset;
+                    Shoot();
                 }
 
                 if (input is { x: 0, y: 0 })
                 {
                     m_aimDirection = m_horizontalMovement.IsFlip ? Vector2.left : Vector2.right;
                     m_shootPivot.localPosition = m_horizontalMovement.IsFlip ? m_leftShootOffset : m_rightShootOffset;
+                    Shoot();
                 }
-                
-                Shoot();
             }
         }
         
@@ -85,6 +98,9 @@ namespace SGGames.Scripts.Player
             {
                 m_animator.SetTrigger(m_shootHorizontalAnim);
             }
+            
+            //Reset aim direction after shot
+            m_aimDirection = Vector2.zero;
             
             
             StartCoroutine(OnDelayBetween2Shot());
