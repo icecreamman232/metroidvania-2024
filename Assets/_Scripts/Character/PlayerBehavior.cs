@@ -9,10 +9,12 @@ namespace SGGames.Scripts.Player
     public class PlayerBehavior : MonoBehaviour
     {
         protected Controller2D m_controller;
+        protected PlayerController m_playerController;
         protected bool m_isAllow;
         
         protected virtual void Start()
         {
+            m_playerController = GetComponent<PlayerController>();
             m_controller = GetComponent<Controller2D>();
         }
 

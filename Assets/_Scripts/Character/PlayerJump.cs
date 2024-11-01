@@ -12,6 +12,7 @@ namespace SGGames.Scripts.Player
         [SerializeField] private bool m_isJumping;
         
         private float m_jumpStartTime;
+        private PlayerCrouch m_playerCrouch;
         private Animator m_animator;
         private int m_jumpAnimParam = Animator.StringToHash("Jumping");
         private float m_coyoteTimer;
@@ -24,6 +25,7 @@ namespace SGGames.Scripts.Player
             base.Start();
             m_isAllow = true;
             m_animator = GetComponentInChildren<Animator>();
+            m_playerCrouch = GetComponent<PlayerCrouch>();
         }
 
         private void Update()
@@ -36,11 +38,17 @@ namespace SGGames.Scripts.Player
             if (Input.GetKeyDown(KeyCode.Space) && m_controller.CollisionInfos.CollideBelow
                 && m_coyoteTimer <= m_coyoteTime && !m_isJumping)
             {
+                if (m_playerController.CurrentState == PlayerState.CROUCH)
+                {
+                    m_playerCrouch.ExitCrouch();
+                }
+                
                 m_controller.SetVerticalVelocity(0);
                 m_isJumping = true;
                 m_jumpStartTime = Time.time;
                 m_coyoteTimer = 0;
                 m_lastGroundY = transform.position.y;
+                m_playerController.ChangeState(PlayerState.JUMPING);
             }
 
 
@@ -51,6 +59,7 @@ namespace SGGames.Scripts.Player
 
             if (m_isJumping)
             {
+                m_playerController.ChangeState(PlayerState.JUMPING);
                 float jumpTime = Time.time - m_jumpStartTime;
                 float jumpVelocity = m_jumpForce + (jumpTime * m_variableJumpHeightMultiplier);
 

@@ -80,6 +80,9 @@ namespace SGGames.Scripts.Player
             m_playerGunHandler.ToggleShootVertically(true);
             m_controller.SetVerticalVelocity(0);
             m_controller.SetGravityActive(true);
+            m_playerController.ChangeState(m_controller.CollisionInfos.CollideBelow 
+                                                        ? PlayerState.IDLE
+                                                        : PlayerState.JUMPING);
             UpdateAnimator();
         }
 
@@ -156,6 +159,7 @@ namespace SGGames.Scripts.Player
             {
                 m_controller.SetVerticalVelocity(0);
             }
+            m_playerController.ChangeState(PlayerState.CLIMBING);
         }
 
         private void UpdateAnimator()

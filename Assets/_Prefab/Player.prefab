@@ -12,12 +12,14 @@ GameObject:
   - component: {fileID: 446270713362776384}
   - component: {fileID: 1496242406124183646}
   - component: {fileID: 8615993475669793753}
+  - component: {fileID: 3534264374652809684}
   - component: {fileID: 2445280561698971460}
   - component: {fileID: 9118581233705571850}
   - component: {fileID: 11388975383486280}
   - component: {fileID: 6563024651879752008}
   - component: {fileID: 4627165858154075460}
   - component: {fileID: 8943881002747249464}
+  - component: {fileID: 806774103094691958}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -139,6 +141,18 @@ MonoBehaviour:
     ColliderRight: 0
     CollideAbove: 0
     CollideBelow: 0
+--- !u!114 &3534264374652809684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054650777946310616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28eb9536458039b4eaa7a3522ec55b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2445280561698971460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +255,22 @@ MonoBehaviour:
   m_startedClimbing: 0
   m_isClimbUp: 0
   m_playerLadderState: 0
+--- !u!114 &806774103094691958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054650777946310616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb85a0be0f7860489ae80f64064cbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerCollider: {fileID: 446270713362776384}
+  m_crouchOffset: {x: 0, y: 0.25}
+  m_crouchSize: {x: 0.4, y: 0.5}
+  m_isCrouched: 0
 --- !u!1 &4560615599737840853
 GameObject:
   m_ObjectHideFlags: 0

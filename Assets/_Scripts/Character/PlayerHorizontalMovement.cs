@@ -54,10 +54,18 @@ namespace SGGames.Scripts.Player
 
             if (m_rawInputValue.x == 0)
             {
+                if (m_controller.CollisionInfos.CollideBelow)
+                {
+                    m_playerController.ChangeState(PlayerState.IDLE);
+                }
                 m_controller.SetHorizontalVelocity(0);
             }
             else
             {
+                if (m_controller.CollisionInfos.CollideBelow)
+                {
+                    m_playerController.ChangeState(PlayerState.RUNNING);
+                }
                 //Smooth horizontal movement
                 float targetVelocityX = m_rawInputValue.x * m_moveSpeed;
                 m_controller.SetHorizontalVelocity(Mathf.SmoothDamp(
@@ -76,6 +84,12 @@ namespace SGGames.Scripts.Player
             m_isFlip = isFlip;
             m_spriteRenderer.flipX = isFlip;
             //m_cameraFollowing.Flip(isFlip);
+        }
+
+        public override void ToggleAllow(bool value)
+        {
+            base.ToggleAllow(value);
+            UpdateAnimator();
         }
 
         private void UpdateAnimator()
