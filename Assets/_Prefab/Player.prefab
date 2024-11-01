@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28eb9536458039b4eaa7a3522ec55b0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerState: 0
 --- !u!114 &2445280561698971460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_currentHealth: 150
   m_godMode: 1
   m_deadAnimDuration: 0
-  m_delayBetween2Flick: 0
+  m_delayBetween2Flick: 0.1
 --- !u!114 &8943881002747249464
 MonoBehaviour:
   m_ObjectHideFlags: 0
