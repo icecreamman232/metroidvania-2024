@@ -21,10 +21,11 @@ namespace SGGames.Scripts.Player
         private bool m_canShootAtRest;
         
         private bool m_isDelay;
+        private PlayerController m_playerController;
         private PlayerHorizontalMovement m_horizontalMovement;
         private Animator m_animator;
-        private int m_shootHorizontalAnim = Animator.StringToHash("ShootHorizontal");
-        private int m_shootVerticalAnim = Animator.StringToHash("ShootVertical");
+        private readonly int m_shootHorizontalAnim = Animator.StringToHash("ShootHorizontal");
+        private readonly int m_shootVerticalAnim = Animator.StringToHash("ShootVertical");
 
         public void ToggleShootVertically(bool toggle)
         {
@@ -37,7 +38,20 @@ namespace SGGames.Scripts.Player
             m_isAllow = true;
             m_canShootVertical = true;
             m_animator = GetComponentInChildren<Animator>();
+            m_playerController = GetComponent<PlayerController>();
             m_horizontalMovement = GetComponent<PlayerHorizontalMovement>();
+        }
+
+        private bool CanShoot()
+        {
+            if (m_playerController.CurrentState == PlayerState.CROUCH)
+            {
+                return false;
+            }
+            
+            if (m_isDelay) return false;
+            
+            return true;
         }
 
         private void Update()
@@ -46,6 +60,9 @@ namespace SGGames.Scripts.Player
             
             if (Input.GetKeyDown(KeyCode.F))
             {
+
+                if (!CanShoot()) return;
+                
                 var input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
                 if (input.x > 0)
                 {
@@ -84,8 +101,6 @@ namespace SGGames.Scripts.Player
         
         private void Shoot()
         {
-            if (m_isDelay) return;
-            
             var bulletGO = m_bulletPooler.GetPooledGameObject();
             var bullet = bulletGO.GetComponent<PlayerBullet>();
             bullet.Spawn(m_shootPivot.transform.position, m_aimDirection);
