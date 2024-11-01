@@ -9,6 +9,7 @@ namespace SGGames.Scripts.Dialogue
     {
         [SerializeField] private string m_npcName;
         [SerializeField] private DialogueEvents m_DialogueEvents;
+        [SerializeField] private DialogueData m_startDialogue;
         [SerializeField] private string m_dialogueTest;
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -25,7 +26,7 @@ namespace SGGames.Scripts.Dialogue
             var playerController = player.GetComponent<PlayerController>();
             playerController.FreezePlayer();
             yield return new WaitUntil(() => playerController.CurrentState == PlayerState.FROZEN);
-            m_DialogueEvents.Raise(m_npcName, m_dialogueTest);
+            m_DialogueEvents.Raise(m_npcName, m_startDialogue);
         }
     }
 }
