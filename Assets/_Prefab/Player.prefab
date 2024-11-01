@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerState: 0
+  m_playerHorizontalMovement: {fileID: 2445280561698971460}
+  m_playerJump: {fileID: 9118581233705571850}
 --- !u!114 &2445280561698971460
 MonoBehaviour:
   m_ObjectHideFlags: 0

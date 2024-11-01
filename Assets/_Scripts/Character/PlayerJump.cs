@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace SGGames.Scripts.Player
@@ -88,6 +89,21 @@ namespace SGGames.Scripts.Player
         private void UpdateAnimator()
         {
             m_animator.SetBool(m_jumpAnimParam,m_controller.Velocity.y != 0 && m_controller.IsGravityActive);
+        }
+
+        public void StopJump()
+        {
+            m_isJumping = false;
+            m_controller.SetHorizontalVelocity(0);
+            StopAllCoroutines();
+            StartCoroutine(OnStoppingJump());
+        }
+
+        private IEnumerator OnStoppingJump()
+        {
+            UpdateAnimator();
+            yield return new WaitUntil(()=> m_controller.CollisionInfos.CollideBelow);
+            UpdateAnimator();
         }
     }
 }

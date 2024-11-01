@@ -114,6 +114,13 @@ namespace SGGames.Scripts.Player
         {
             //m_cameraFollowing.SetPermission(value);
         }
+
+        public void StopRunning()
+        {
+            m_animator.SetBool(m_runningAnimParam, false);
+            m_controller.SetVelocity(Vector2.zero);
+            m_playerController.ChangeState(PlayerState.IDLE);
+        }
     }
 }
 

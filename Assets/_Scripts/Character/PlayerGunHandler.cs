@@ -21,7 +21,6 @@ namespace SGGames.Scripts.Player
         private bool m_canShootAtRest;
         
         private bool m_isDelay;
-        private PlayerController m_playerController;
         private PlayerHorizontalMovement m_horizontalMovement;
         private Animator m_animator;
         private readonly int m_shootHorizontalAnim = Animator.StringToHash("ShootHorizontal");
