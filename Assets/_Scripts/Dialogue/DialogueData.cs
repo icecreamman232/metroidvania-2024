@@ -28,6 +28,7 @@ namespace SGGames.Scripts.Dialogue
     public class DialogueChoice
     {
         public string ChoiceDialogue;
+        public string ChoiceID;
         public DialogueData ChoiceData;
     }
 }

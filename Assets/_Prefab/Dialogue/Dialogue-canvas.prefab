@@ -522,6 +522,8 @@ MonoBehaviour:
   m_unfreezePlayerEvent: {fileID: 11400000, guid: a31d65f637d9bc84ab14e723c360a386, type: 2}
   m_currentDialogue: {fileID: 0}
   m_dialogueUIView: {fileID: 8930484072881131289}
+  m_choiceEvent: {fileID: 11400000, guid: 844ae9a7ade132f4f8ba6969830bf05e, type: 2}
+  m_canContinue: 0
 --- !u!114 &8930484072881131289
 MonoBehaviour:
   m_ObjectHideFlags: 0

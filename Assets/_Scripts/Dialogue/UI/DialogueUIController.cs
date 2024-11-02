@@ -16,6 +16,7 @@ namespace SGGames.Scripts.UI
         [SerializeField] private ActionEvent m_unfreezePlayerEvent;
         [SerializeField] private DialogueData m_currentDialogue;
         [SerializeField] private DialogueUIView m_dialogueUIView;
+        [SerializeField] private DialogueChoiceEvent m_choiceEvent;
         [SerializeField] private bool m_canContinue;
 
         private int m_curLineIndex;
@@ -42,7 +43,7 @@ namespace SGGames.Scripts.UI
         {
             if (m_currentDialogue == null) return;
 
-            if (Input.GetKeyDown(KeyCode.Space) && m_canContinue)
+            if (Input.GetKeyDown(KeyCode.E) && m_canContinue)
             {
                 Continue();
             }
@@ -77,6 +78,9 @@ namespace SGGames.Scripts.UI
 
         private void ChooseChoice(int index)
         {
+            //Trigger action bounds to this choice
+            m_choiceEvent.Raise(m_currentDialogue.DialogueLines[m_curLineIndex].Choices[index].ChoiceID);
+            //Assign new dialogue from this choice
             m_currentDialogue = m_currentDialogue.DialogueLines[m_curLineIndex].Choices[index].ChoiceData;
             m_curLineIndex = 0; //Reset line index for new dialogue group
             ShowDialogue(m_currentDialogue.DialogueLines[m_curLineIndex]);

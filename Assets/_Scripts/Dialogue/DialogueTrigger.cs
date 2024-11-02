@@ -10,7 +10,6 @@ namespace SGGames.Scripts.Dialogue
         [SerializeField] private string m_npcName;
         [SerializeField] private DialogueEvents m_DialogueEvents;
         [SerializeField] private DialogueData m_startDialogue;
-        [SerializeField] private string m_dialogueTest;
         
         private void OnTriggerEnter2D(Collider2D other)
         {

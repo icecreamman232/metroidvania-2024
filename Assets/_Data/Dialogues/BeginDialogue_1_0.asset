@@ -23,6 +23,8 @@ MonoBehaviour:
     Dialogues: Do you want to enter this door ?
     Choices:
     - ChoiceDialogue: Yes, have it in my mind.
+      ChoiceID: Begin_1_1
       ChoiceData: {fileID: 11400000, guid: 47afa04bb258a6b448846edac6fd3148, type: 2}
     - ChoiceDialogue: No, why tho ?
+      ChoiceID: Begin_1_2
       ChoiceData: {fileID: 11400000, guid: 36e20c87feb072a40be11ed0ba2d9466, type: 2}
