@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 4627165858154075460}
   - component: {fileID: 8943881002747249464}
   - component: {fileID: 806774103094691958}
+  - component: {fileID: 3547499789306170868}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -275,6 +276,18 @@ MonoBehaviour:
   m_crouchOffset: {x: 0, y: 0.25}
   m_crouchSize: {x: 0.4, y: 0.5}
   m_isCrouched: 0
+--- !u!114 &3547499789306170868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054650777946310616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d36fd6a7707494398f009e46d7ae9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4560615599737840853
 GameObject:
   m_ObjectHideFlags: 0

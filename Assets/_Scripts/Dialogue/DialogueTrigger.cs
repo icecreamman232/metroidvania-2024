@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using SGGames.Scripts.Player;
 using SGGames.Scripts.ScriptableEvent;
@@ -15,8 +16,23 @@ namespace SGGames.Scripts.Dialogue
         {
             if (other.gameObject.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                StartCoroutine(OnTriggerDialogue(other.gameObject));
+                var playerInteract = other.GetComponent<PlayerInteract>();
+                playerInteract.ConnectDialogueTrigger(this);
             }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                var playerInteract = other.GetComponent<PlayerInteract>();
+                playerInteract.DisconnectDialogueTrigger();
+            }
+        }
+
+        public void TriggerDialogue(GameObject player)
+        {
+            StartCoroutine(OnTriggerDialogue(player.gameObject));
         }
         
 

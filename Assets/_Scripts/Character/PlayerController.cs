@@ -19,6 +19,7 @@ namespace SGGames.Scripts.Player
         [SerializeField] private ActionEvent m_unfreezePlayerEvent;
         [SerializeField] private PlayerHorizontalMovement m_playerHorizontalMovement;
         [SerializeField] private PlayerJump m_playerJump;
+        [SerializeField] private PlayerInteract m_playerInteract;
 
         public PlayerState CurrentState => m_playerState;
 
