@@ -158,6 +158,7 @@ MonoBehaviour:
   m_unfreezePlayerEvent: {fileID: 11400000, guid: a31d65f637d9bc84ab14e723c360a386, type: 2}
   m_playerHorizontalMovement: {fileID: 2445280561698971460}
   m_playerJump: {fileID: 9118581233705571850}
+  m_playerInteract: {fileID: 3547499789306170868}
 --- !u!114 &2445280561698971460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d36fd6a7707494398f009e46d7ae9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isInDialogueZone: 0
+  m_dialogueTrigger: {fileID: 0}
 --- !u!1 &4560615599737840853
 GameObject:
   m_ObjectHideFlags: 0
