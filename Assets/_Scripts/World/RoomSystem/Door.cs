@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using SGGames.Scripts.Managers;
 using SGGames.Scripts.Player;
@@ -9,19 +8,19 @@ namespace SGGames.Scripts.World
 {
     public class Door : MonoBehaviour
     {
-        [SerializeField] private Door m_connectedDoor;
-        [SerializeField] private Transform m_exitPoint;
-        [SerializeField] private Room m_room;
-        [SerializeField] private BoolEvent m_fadeScreenEvent;
-        [SerializeField] private RoomVisitedEvent m_roomVisitedEvent;
+        [SerializeField] protected Door m_connectedDoor;
+        [SerializeField] protected Transform m_exitPoint;
+        [SerializeField] protected Room m_room;
+        [SerializeField] protected BoolEvent m_fadeScreenEvent;
+        [SerializeField] protected RoomVisitedEvent m_roomVisitedEvent;
 
         public string RoomID => m_room.RoomID;
         public Transform ExitPoint => m_exitPoint;
         public Room Room => m_room;
         
-        private bool m_isProcess;
+        protected bool m_isProcess;
         
-        private void OnTriggerEnter2D(Collider2D other)
+        protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (m_isProcess) return;
             if (other.gameObject.CompareTag("Player") && other.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -30,7 +29,7 @@ namespace SGGames.Scripts.World
             }
         }
 
-        private IEnumerator OnTeleportToConnectDoor(GameObject player)
+        protected virtual IEnumerator OnTeleportToConnectDoor(GameObject player)
         {
             m_isProcess = true;
             //Fade screen out

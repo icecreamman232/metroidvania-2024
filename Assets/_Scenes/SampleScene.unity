@@ -143,6 +143,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1138999574652720963, guid: d6b14672cd571404bb8726c1fcf2ac6b, type: 3}
   m_PrefabInstance: {fileID: 1314728517111968778}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &495151451 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8407967033088769392, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
+  m_PrefabInstance: {fileID: 1156676702445900094}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9ee5816fa9c664084e1fe30f646ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +371,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000007dbc285279e6117a
+  m_ApplyToSortingLayers: 000000007dbc285279e6117afd9d3b43
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -405,17 +416,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &999090338 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1420649377284198832, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
-  m_PrefabInstance: {fileID: 1156676702445900094}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f2385f035c9884a8aeed860f20c819, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1286481532
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +804,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6590796752328135483, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5234141
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590796752328135483, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0056421757
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407967033088769392, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
+      propertyPath: m_connectedDoor
+      value: 
+      objectReference: {fileID: 226318487}
     - target: {fileID: 9193482679509516138, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
       propertyPath: m_Name
       value: Room-1
@@ -881,7 +893,7 @@ PrefabInstance:
     - target: {fileID: 554902174290626396, guid: c6b4856946b9d754195ab9b759a0af08, type: 3}
       propertyPath: m_connectedDoor
       value: 
-      objectReference: {fileID: 999090338}
+      objectReference: {fileID: 495151451}
     - target: {fileID: 2631092450982954277, guid: c6b4856946b9d754195ab9b759a0af08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27

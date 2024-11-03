@@ -1,4 +1,5 @@
 using SGGames.Scripts.Dialogue;
+using SGGames.Scripts.World;
 using UnityEngine;
 
 namespace SGGames.Scripts.Player
@@ -8,6 +9,9 @@ namespace SGGames.Scripts.Player
         [Header("Dialogue Zone")]
         [SerializeField] private bool m_isInDialogueZone;
         [SerializeField] private DialogueTrigger m_dialogueTrigger;
+        [Header("Door Zone")]
+        [SerializeField] private bool m_isInDoorZone;
+        [SerializeField] private DoorWithPrompt m_doorWithPrompt;
         
         protected override void Start()
         {
@@ -15,6 +19,7 @@ namespace SGGames.Scripts.Player
             m_isAllow = true;
         }
 
+        #region Dialogue
         public void ConnectDialogueTrigger(DialogueTrigger dialogueTrigger)
         {
             m_dialogueTrigger = dialogueTrigger;
@@ -26,6 +31,21 @@ namespace SGGames.Scripts.Player
             m_dialogueTrigger = null;
             m_isInDialogueZone = false;
         }
+        #endregion
+        
+        #region Door Zone
+        public void ConnectDoor(DoorWithPrompt doorWithPrompt)
+        {
+            m_doorWithPrompt = doorWithPrompt;
+            m_isInDoorZone = true;
+        }
+
+        public void DisconnectDoor()
+        {
+            m_doorWithPrompt = null;
+            m_isInDoorZone = false;
+        }
+        #endregion
 
         private void Update()
         {
@@ -35,6 +55,12 @@ namespace SGGames.Scripts.Player
             {
                 m_dialogueTrigger.TriggerDialogue(this.gameObject);
                 DisconnectDialogueTrigger();
+            }
+            
+            if (m_isInDoorZone && Input.GetKeyDown(KeyCode.E))
+            {
+                m_doorWithPrompt.TriggerDoor(this.gameObject);
+                DisconnectDoor();
             }
         }
     }
