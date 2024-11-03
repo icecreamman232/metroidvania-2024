@@ -37,7 +37,6 @@ namespace SGGames.Scripts.Player
             m_isAllow = true;
             m_canShootVertical = true;
             m_animator = GetComponentInChildren<Animator>();
-            m_playerController = GetComponent<PlayerController>();
             m_horizontalMovement = GetComponent<PlayerHorizontalMovement>();
         }
 

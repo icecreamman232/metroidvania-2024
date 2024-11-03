@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SGGames.Scripts.Managers
 {
-    public class CameraFollowing : MonoBehaviour
+    public class CameraFollowing : Singleton<CameraFollowing>
     {
         [SerializeField] private Transform m_cameraTransform;
         [SerializeField] private Transform m_targetTransform;

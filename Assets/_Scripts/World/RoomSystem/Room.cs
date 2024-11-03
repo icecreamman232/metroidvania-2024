@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : MonoBehaviour
+namespace SGGames.Scripts.World
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Room : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private string m_roomID;
+        [SerializeField] private GameObject m_roomMask;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void ShowRoomMask()
+        {
+            m_roomMask.SetActive(true);
+        }
+
+        public void HideRoomMask()
+        {
+            m_roomMask.SetActive(false);
+        }
     }
 }
+
