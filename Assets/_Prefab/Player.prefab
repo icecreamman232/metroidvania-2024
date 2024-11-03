@@ -240,9 +240,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxHealth: 150
   m_currentHealth: 150
-  m_godMode: 1
+  m_godMode: 0
+  m_updateHealthBarEvent: {fileID: 11400000, guid: c3e10e0e179459c4ba68c44bc874cccb, type: 2}
   m_deadAnimDuration: 0
   m_delayBetween2Flick: 0.1
+  m_flickColor: {r: 1, g: 0.4198113, b: 0.4198113, a: 1}
 --- !u!114 &8943881002747249464
 MonoBehaviour:
   m_ObjectHideFlags: 0

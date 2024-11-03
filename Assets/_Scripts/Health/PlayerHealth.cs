@@ -1,5 +1,6 @@
 using System.Collections;
-//using SGGames.Scripts.ScriptableEvent;
+using SGGames.Scripts.Managers;
+using SGGames.Scripts.ScriptableEvent;
 using UnityEngine;
 
 namespace SGGames.Scripts.Player
@@ -7,10 +8,12 @@ namespace SGGames.Scripts.Player
     public class PlayerHealth : Health
     {
         [SerializeField] private bool m_godMode;
-        //[SerializeField] private IntEvent m_updateHealthBarEvent;
+        [SerializeField] private FloatEvent m_updateHealthBarEvent;
         //[SerializeField] private ActionEvent m_deadEvent;
         [SerializeField] private float m_deadAnimDuration;
+        [Header("Flick FX")]
         [SerializeField] private float m_delayBetween2Flick;
+        [SerializeField] private Color m_flickColor;
         
         private Animator m_animator;
         private BoxCollider2D m_collider2D;
@@ -42,7 +45,7 @@ namespace SGGames.Scripts.Player
             var flickerStop = Time.time + duration;
             while (Time.time < flickerStop)
             {
-                m_spriteRenderer.color = Color.black;
+                m_spriteRenderer.color = m_flickColor;
                 yield return new WaitForSeconds(m_delayBetween2Flick);
                 m_spriteRenderer.color = Color.white;
                 yield return new WaitForSeconds(m_delayBetween2Flick);
@@ -53,7 +56,7 @@ namespace SGGames.Scripts.Player
 
         protected override void UpdateHealthBar()
         {
-            //m_updateHealthBarEvent.Raise(m_currentHealth);
+            m_updateHealthBarEvent.Raise(MathHelpers.Remap(m_currentHealth, 0, m_maxHealth, 0f, 1f));
             base.UpdateHealthBar();
         }
 
