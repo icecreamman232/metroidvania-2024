@@ -95,6 +95,7 @@ MonoBehaviour:
   m_exitPoint: {fileID: 2755150284312623446}
   m_room: {fileID: 0}
   m_fadeScreenEvent: {fileID: 11400000, guid: 6246b06454ebdcd489778d526deed581, type: 2}
+  m_roomVisitedEvent: {fileID: 11400000, guid: 35d08a5d312045c49b1513c0ac7f513f, type: 2}
 --- !u!1 &8583214250329808990
 GameObject:
   m_ObjectHideFlags: 0

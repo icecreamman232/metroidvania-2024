@@ -9,6 +9,8 @@ namespace SGGames.Scripts.World
         [SerializeField] private string m_roomID;
         [SerializeField] private GameObject m_roomMask;
 
+        public string RoomID => m_roomID;
+        
         public void ShowRoomMask()
         {
             m_roomMask.SetActive(true);

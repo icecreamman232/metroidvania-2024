@@ -13,7 +13,9 @@ namespace SGGames.Scripts.World
         [SerializeField] private Transform m_exitPoint;
         [SerializeField] private Room m_room;
         [SerializeField] private BoolEvent m_fadeScreenEvent;
-        
+        [SerializeField] private RoomVisitedEvent m_roomVisitedEvent;
+
+        public string RoomID => m_room.RoomID;
         public Transform ExitPoint => m_exitPoint;
         public Room Room => m_room;
         
@@ -41,6 +43,7 @@ namespace SGGames.Scripts.World
             m_room.ShowRoomMask();
             m_connectedDoor.Room.HideRoomMask();
             player.transform.position = m_connectedDoor.ExitPoint.position;
+            m_roomVisitedEvent.Raise(m_connectedDoor.RoomID);
             CameraFollowing.Instance.SetCameraPosition(player.transform.position);
             CameraFollowing.Instance.SetPermission(true);
             //Fade screen in
