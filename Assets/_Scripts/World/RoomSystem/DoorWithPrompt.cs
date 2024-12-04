@@ -13,6 +13,7 @@ namespace SGGames.Scripts.World
         {
             if (m_isProcess) return;
             var playerInteract = other.GetComponent<PlayerInteract>();
+            if (playerInteract == null) return;
             playerInteract.ConnectDoor(this);
         }
 
