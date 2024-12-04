@@ -334,7 +334,10 @@ MonoBehaviour:
   m_followingSpeed: 50
   m_aheadDistanceX: 0
   m_smoothTime: 0.2
-  m_roomCollider: {fileID: 1632495065}
+  m_roomCollider: {fileID: 0}
+  m_cameraBounds:
+    TopLeft: {x: 0, y: 0}
+    BotRight: {x: 0, y: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,56 +488,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1632495063 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9193482679509516138, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
+--- !u!114 &1632495066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 435683225378389665, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
   m_PrefabInstance: {fileID: 1156676702445900094}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1632495065
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1632495063}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.5045004, y: 2.2171457}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 14.966688, y: 7.45229}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7200d85c12bcfff47858aa2dab393795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1925778362
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +537,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2631092450982954277, guid: c6b4856946b9d754195ab9b759a0af08, type: 3}
   m_PrefabInstance: {fileID: 2461981885157556199}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1979446998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 458067455738995940, guid: c6b4856946b9d754195ab9b759a0af08, type: 3}
+  m_PrefabInstance: {fileID: 2461981885157556199}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7200d85c12bcfff47858aa2dab393795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &137451127195618190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -874,10 +849,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9193482679509516138, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1632495065}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 598ec25d1b40767469a444f1bb94cca4, type: 3}
 --- !u!1001 &1314728517111968778
 PrefabInstance:
@@ -1049,6 +1021,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5369254443611943927, guid: 09681dcad81350341a4ac2d7a3749641, type: 3}
+      propertyPath: m_rooms.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369254443611943927, guid: 09681dcad81350341a4ac2d7a3749641, type: 3}
+      propertyPath: m_rooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 1632495066}
+    - target: {fileID: 5369254443611943927, guid: 09681dcad81350341a4ac2d7a3749641, type: 3}
+      propertyPath: m_rooms.Array.data[1]
+      value: 
+      objectReference: {fileID: 1979446998}
     - target: {fileID: 5533446641486259889, guid: 09681dcad81350341a4ac2d7a3749641, type: 3}
       propertyPath: m_Name
       value: RoomManager

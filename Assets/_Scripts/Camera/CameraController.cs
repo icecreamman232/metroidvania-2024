@@ -9,7 +9,7 @@ namespace SGGames.Scripts.Managers
         public Vector2 TopLeft;
         public Vector2 BotRight;
     }
-    public class CameraFollowing : Singleton<CameraFollowing>
+    public class CameraController : Singleton<CameraController>
     {
         [SerializeField] private Transform m_cameraTransform;
         [SerializeField] private Transform m_targetTransform;

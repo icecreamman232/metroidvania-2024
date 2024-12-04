@@ -8,8 +8,11 @@ namespace SGGames.Scripts.World
     {
         [SerializeField] private string m_roomID;
         [SerializeField] private GameObject m_roomMask;
+        [SerializeField] private BoxCollider2D m_roomCollider;
 
         public string RoomID => m_roomID;
+
+        public BoxCollider2D RoomCollider => m_roomCollider;
         
         public void ShowRoomMask()
         {

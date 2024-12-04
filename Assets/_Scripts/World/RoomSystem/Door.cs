@@ -35,16 +35,21 @@ namespace SGGames.Scripts.World
             //Fade screen out
             var playerController = player.GetComponent<PlayerController>();
             playerController.FreezePlayer();
-            CameraFollowing.Instance.SetPermission(false); //Stop camera following
+            CameraController.Instance.SetPermission(false); //Stop camera following
             m_fadeScreenEvent.Raise(true);
             yield return new WaitForSeconds(0.3f);
             
             m_room.ShowRoomMask();
             m_connectedDoor.Room.HideRoomMask();
+            
+            
             player.transform.position = m_connectedDoor.ExitPoint.position;
             m_roomVisitedEvent.Raise(m_connectedDoor.RoomID);
-            CameraFollowing.Instance.SetCameraPosition(player.transform.position);
-            CameraFollowing.Instance.SetPermission(true);
+            
+            CameraController.Instance.SetRoomCollider(m_connectedDoor.Room.RoomCollider);
+            CameraController.Instance.SetCameraPosition(player.transform.position);
+            CameraController.Instance.SetPermission(true);
+            
             //Fade screen in
             m_fadeScreenEvent.Raise(false);
             yield return new WaitForSeconds(0.3f);

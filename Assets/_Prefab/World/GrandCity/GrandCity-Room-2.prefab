@@ -872,6 +872,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6617802713383405677, guid: 4a6dc9ef5fc6325479b5cc84e891955f, type: 3}
+      propertyPath: m_Size.x
+      value: 13.996925
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617802713383405677, guid: 4a6dc9ef5fc6325479b5cc84e891955f, type: 3}
+      propertyPath: m_Size.y
+      value: 5.5127606
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617802713383405677, guid: 4a6dc9ef5fc6325479b5cc84e891955f, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.019618988
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617802713383405677, guid: 4a6dc9ef5fc6325479b5cc84e891955f, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.247381
+      objectReference: {fileID: 0}
     - target: {fileID: 8649011200843642535, guid: 4a6dc9ef5fc6325479b5cc84e891955f, type: 3}
       propertyPath: m_roomID
       value: GrandCity-2
