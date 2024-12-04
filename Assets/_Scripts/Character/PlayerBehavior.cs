@@ -8,9 +8,9 @@ namespace SGGames.Scripts.Player
     /// </summary>
     public class PlayerBehavior : MonoBehaviour
     {
+        [SerializeField] protected bool m_isAllow;
         protected Controller2D m_controller;
         protected PlayerController m_playerController;
-        protected bool m_isAllow;
         
         protected virtual void Start()
         {

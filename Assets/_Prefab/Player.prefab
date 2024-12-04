@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerState: 0
+  m_playerFaceDirection: 1
   m_unfreezePlayerEvent: {fileID: 11400000, guid: a31d65f637d9bc84ab14e723c360a386, type: 2}
   m_playerHorizontalMovement: {fileID: 2445280561698971460}
   m_playerJump: {fileID: 9118581233705571850}
@@ -171,7 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1ad072a42567b4eae4adb15b2bc856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_moveSpeed: 5
+  m_isAllow: 0
+  m_moveSpeed: 3
 --- !u!114 &9118581233705571850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,9 +186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa2e76daef59c8947ac1d29d4e65dcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_jumpPeak: 5.5
+  m_isAllow: 0
+  m_jumpPeak: 4.5
   m_jumpForce: 3
-  m_variableJumpHeightMultiplier: 10
+  m_variableJumpHeightMultiplier: 5
   m_coyoteTime: 0.5
   m_isJumping: 0
 --- !u!114 &11388975383486280
@@ -201,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccab379cfddaa341a7ff47c9bbdd89a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isAllow: 0
   m_bulletPooler: {fileID: 6563024651879752008}
   m_delayBetween2Shot: 0.5
   m_shootPivot: {fileID: 2380994904248778340}
@@ -257,6 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1aaed594d5a65642aa97b50ec11b318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isAllow: 0
   m_curLadder: {fileID: 0}
   m_climbSpeed: 2
   m_isClimbing: 0
@@ -275,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb85a0be0f7860489ae80f64064cbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isAllow: 0
   m_playerCollider: {fileID: 446270713362776384}
   m_crouchOffset: {x: 0, y: 0.25}
   m_crouchSize: {x: 0.4, y: 0.5}
@@ -291,8 +297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d36fd6a7707494398f009e46d7ae9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isAllow: 0
   m_isInDialogueZone: 0
   m_dialogueTrigger: {fileID: 0}
+  m_isInDoorZone: 0
+  m_doorWithPrompt: {fileID: 0}
 --- !u!1 &4560615599737840853
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +407,7 @@ SpriteRenderer:
   m_SortingLayerID: 2047993465
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1304128383, guid: 3310e1180d8eb8c40a6ab914f752f2ca, type: 3}
+  m_Sprite: {fileID: -1035295941, guid: f84cf2768b2c7db458e7f27b36a77d64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

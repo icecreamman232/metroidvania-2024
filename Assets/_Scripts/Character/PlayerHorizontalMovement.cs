@@ -83,6 +83,7 @@ namespace SGGames.Scripts.Player
         {
             m_isFlip = isFlip;
             m_spriteRenderer.flipX = isFlip;
+            m_playerController.ChangeFaceDirection(isFlip ? PlayerFaceDirection.LEFT : PlayerFaceDirection.RIGHT);
             //m_cameraFollowing.Flip(isFlip);
         }
 

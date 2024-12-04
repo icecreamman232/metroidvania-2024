@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace SGGames.Scripts.Player
 {
+    public enum PlayerFaceDirection
+    {
+        LEFT,
+        RIGHT,
+    }
     public enum PlayerState
     {
         IDLE,
@@ -15,13 +20,15 @@ namespace SGGames.Scripts.Player
     }
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerState m_playerState;
+        [SerializeField] private PlayerState m_playerState; 
+        [SerializeField] private PlayerFaceDirection m_playerFaceDirection = PlayerFaceDirection.RIGHT; 
         [SerializeField] private ActionEvent m_unfreezePlayerEvent;
         [SerializeField] private PlayerHorizontalMovement m_playerHorizontalMovement;
         [SerializeField] private PlayerJump m_playerJump;
         [SerializeField] private PlayerInteract m_playerInteract;
 
         public PlayerState CurrentState => m_playerState;
+        public PlayerFaceDirection CurrentFaceDirection => m_playerFaceDirection;
 
         private void Start()
         {
@@ -36,6 +43,11 @@ namespace SGGames.Scripts.Player
         public void ChangeState(PlayerState newState)
         {
             m_playerState = newState;
+        }
+
+        public void ChangeFaceDirection(PlayerFaceDirection newFaceDirection)
+        {
+            m_playerFaceDirection = newFaceDirection;
         }
 
         public void FreezePlayer()

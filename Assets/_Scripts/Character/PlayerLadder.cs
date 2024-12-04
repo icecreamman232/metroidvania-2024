@@ -33,7 +33,6 @@ namespace SGGames.Scripts.Player
         protected override void Start()
         {
             base.Start();
-            m_isAllow = true;
             m_playerJump = GetComponent<PlayerJump>();
             m_playerGunHandler = GetComponent<PlayerGunHandler>();
             m_animator = GetComponentInChildren<Animator>();

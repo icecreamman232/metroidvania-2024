@@ -42,10 +42,10 @@ namespace SGGames.Scripts.Player
 
         private bool CanShoot()
         {
-            if (m_playerController.CurrentState == PlayerState.CROUCH)
-            {
-                return false;
-            }
+            // if (m_playerController.CurrentState == PlayerState.CROUCH)
+            // {
+            //     return false;
+            // }
             
             if (m_isDelay) return false;
             
@@ -74,19 +74,29 @@ namespace SGGames.Scripts.Player
                     m_shootPivot.localPosition = m_leftShootOffset;
                     Shoot();
                 }
+
+                if (m_playerController.CurrentState == PlayerState.CROUCH)
+                {
+                    m_aimDirection = m_playerController.CurrentFaceDirection == PlayerFaceDirection.RIGHT 
+                            ? Vector2.right : Vector2.left;
+                    
+                    m_shootPivot.localPosition = m_aimDirection == Vector2.right 
+                        ? m_rightShootOffset : m_leftShootOffset;
+                    Shoot();
+                }
                 
-                if (input.y > 0 && m_canShootVertical)
-                {
-                    m_aimDirection = Vector2.up;
-                    m_shootPivot.localPosition = m_upShootOffset;
-                    Shoot();
-                }
-                else if (input.y < 0 && m_canShootVertical)
-                {
-                    m_aimDirection = Vector2.down;
-                    m_shootPivot.localPosition = m_downShootOffset;
-                    Shoot();
-                }
+                // if (input.y > 0 && m_canShootVertical)
+                // {
+                //     m_aimDirection = Vector2.up;
+                //     m_shootPivot.localPosition = m_upShootOffset;
+                //     Shoot();
+                // }
+                // else if (input.y < 0 && m_canShootVertical)
+                // {
+                //     m_aimDirection = Vector2.down;
+                //     m_shootPivot.localPosition = m_downShootOffset;
+                //     Shoot();
+                // }
 
                 if (input is { x: 0, y: 0 })
                 {
