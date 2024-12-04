@@ -77,7 +77,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.35}
+  m_Offset: {x: -0.020547152, y: 0.3258113}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.7}
+  m_Size: {x: 0.29320765, y: 0.6516226}
   m_EdgeRadius: 0
 --- !u!50 &1496242406124183646
 Rigidbody2D:
@@ -209,8 +209,8 @@ MonoBehaviour:
   m_delayBetween2Shot: 0.5
   m_shootPivot: {fileID: 2380994904248778340}
   m_aimDirection: {x: 1, y: 0}
-  m_leftShootOffset: {x: -0.32, y: 0.35}
-  m_rightShootOffset: {x: 0.32, y: 0.35}
+  m_leftShootOffset: {x: -0.2, y: 0.45}
+  m_rightShootOffset: {x: 0.2, y: 0.45}
   m_upShootOffset: {x: 0.2, y: 0.6}
   m_downShootOffset: {x: 0, y: 0}
 --- !u!114 &6563024651879752008
@@ -282,8 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isAllow: 0
   m_playerCollider: {fileID: 446270713362776384}
-  m_crouchOffset: {x: 0, y: 0.25}
-  m_crouchSize: {x: 0.4, y: 0.5}
+  m_crouchOffset: {x: -0.019735813, y: 0.26820755}
+  m_crouchSize: {x: 0.25264168, y: 0.5364151}
   m_isCrouched: 0
 --- !u!114 &3547499789306170868
 MonoBehaviour:
