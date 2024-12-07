@@ -1,8 +1,8 @@
-using System;
 using System.Collections;
 using SGGames.Scripts.Player;
 using SGGames.Scripts.ScriptableEvent;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SGGames.Scripts.Dialogue
 {
@@ -11,6 +11,8 @@ namespace SGGames.Scripts.Dialogue
         [SerializeField] private string m_npcName;
         [SerializeField] private DialogueEvents m_DialogueEvents;
         [SerializeField] private DialogueData m_startDialogue;
+        [SerializeField] private UnityEvent m_onDialogueTriggered;
+        [SerializeField] private UnityEvent m_onDialogueDisconnect;
         
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -18,6 +20,7 @@ namespace SGGames.Scripts.Dialogue
             {
                 var playerInteract = other.GetComponent<PlayerInteract>();
                 playerInteract.ConnectDialogueTrigger(this);
+                m_onDialogueTriggered?.Invoke();
             }
         }
 
@@ -27,6 +30,7 @@ namespace SGGames.Scripts.Dialogue
             {
                 var playerInteract = other.GetComponent<PlayerInteract>();
                 playerInteract.DisconnectDialogueTrigger();
+                m_onDialogueDisconnect?.Invoke();
             }
         }
 

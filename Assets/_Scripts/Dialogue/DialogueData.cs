@@ -8,6 +8,7 @@ namespace SGGames.Scripts.Dialogue
         PLAYER,
         NPC_TEST,
         //NPC NAME INSERT BELOW
+        BARTENDER_ROBOT_CHARLIE,
     }
     
     [CreateAssetMenu(fileName = "DialogueData", menuName = "SGGames/DialogueData", order = 1)]

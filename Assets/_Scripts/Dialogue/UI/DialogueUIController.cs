@@ -88,6 +88,7 @@ namespace SGGames.Scripts.UI
 
         private void ExitDialogue()
         {
+            m_curLineIndex = 0;
             HideUI();
             m_unfreezePlayerEvent.Raise();
         }

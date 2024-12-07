@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c45e7c8a5282ff428cf34e9b0c08c7e, type: 3}
-  m_Name: BeginDialogue_1_0
+  m_Name: BeginDialogue_1_0_test
   m_EditorClassIdentifier: 
   DialogueLines:
+  - Speaker: 2
+    Dialogues: Good day, what could I get for you sir?
+    Choices: []
   - Speaker: 0
-    Dialogues: Hello, who are you?
+    Dialogues: Hello, there. I am not here for drinking.
     Choices: []
-  - Speaker: 1
-    Dialogues: Hello, there.
-    Choices: []
-  - Speaker: 1
+  - Speaker: 2
     Dialogues: Do you want to enter this door ?
     Choices:
     - ChoiceDialogue: Yes, have it in my mind.
