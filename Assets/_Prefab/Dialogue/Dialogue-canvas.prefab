@@ -523,6 +523,8 @@ MonoBehaviour:
   m_currentDialogue: {fileID: 0}
   m_dialogueUIView: {fileID: 8930484072881131289}
   m_choiceEvent: {fileID: 11400000, guid: 844ae9a7ade132f4f8ba6969830bf05e, type: 2}
+  m_dialogueStarted: {fileID: 11400000, guid: 689605f8dae271f4e9849de8a4c998cf, type: 2}
+  m_dialogueEnded: {fileID: 11400000, guid: 6c225e205d41ac44196c22884e373013, type: 2}
   m_canContinue: 0
 --- !u!114 &8930484072881131289
 MonoBehaviour:

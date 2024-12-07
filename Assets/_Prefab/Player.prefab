@@ -77,7 +77,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.020547152, y: 0.3258113}
+  m_Offset: {x: -0.06621528, y: 0.437326}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29320765, y: 0.6516226}
+  m_Size: {x: 0.4440179, y: 0.874652}
   m_EdgeRadius: 0
 --- !u!50 &1496242406124183646
 Rigidbody2D:
@@ -282,8 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_isAllow: 0
   m_playerCollider: {fileID: 446270713362776384}
-  m_crouchOffset: {x: -0.019735813, y: 0.26820755}
-  m_crouchSize: {x: 0.25264168, y: 0.5364151}
+  m_crouchOffset: {x: -0.06621528, y: 0.35023832}
+  m_crouchSize: {x: 0.4440179, y: 0.70047665}
   m_isCrouched: 0
 --- !u!114 &3547499789306170868
 MonoBehaviour:
@@ -405,7 +405,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2047993465
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 361920732, guid: 0beb2b0d442956c4d8685aebb0aedc81, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

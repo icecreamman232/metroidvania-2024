@@ -17,6 +17,8 @@ namespace SGGames.Scripts.UI
         [SerializeField] private DialogueData m_currentDialogue;
         [SerializeField] private DialogueUIView m_dialogueUIView;
         [SerializeField] private DialogueChoiceEvent m_choiceEvent;
+        [SerializeField] private ActionEvent m_dialogueStarted;
+        [SerializeField] private ActionEvent m_dialogueEnded;
         [SerializeField] private bool m_canContinue;
 
         private int m_curLineIndex;
@@ -32,6 +34,7 @@ namespace SGGames.Scripts.UI
         {
             m_currentDialogue = dialogue;
             ShowUI();
+            m_dialogueStarted?.Raise();
         }
 
         private void OnDestroy()
@@ -90,6 +93,7 @@ namespace SGGames.Scripts.UI
         {
             m_curLineIndex = 0;
             HideUI();
+            m_dialogueEnded?.Raise();
             m_unfreezePlayerEvent.Raise();
         }
 
